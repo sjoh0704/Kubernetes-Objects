@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trading-web-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: MyApp
+  template:
+    metadata:
+      name: trading-webserver
+      labels: 
+        app: MyApp
+    spec:
+      containers:
+      - name: trading-webserver
+        image: sjoh0704/xxx:latest
+        command: ['python3']
+        args: ['Simple-Shopping-Mall-Web/manage.py', 'runserver', '0.0.0.0:80']
+        ports:
+        - containerPort: 80
+  

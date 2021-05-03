@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: trading-web-service
+spec:
+  ports:
+  - name: web-port
+    port: 80
+    targetPort: 80
+    nodePort: 31000
+  selector:
+    app: MyApp
+  type: NodePort
