@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: login-statefulset
+spec:
+  serviceName: login-service
+  replicas: 3
+  selector:
+    matchLabels:
+      app: login
+  template:
+    metadata:
+      name: 
+      labels: 
+        app: login
+    spec:
+      containers:
+      - name: login-api-server
+        image: sjoh0704/django-msa:all
+        command: ['python3']
+        args: ['MSA-django/backend/manage.py', 'runserver', '0.0.0.0:5000']
+        ports:
+        - containerPort: 5000
+  
