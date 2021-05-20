@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  namespace: default
+  name: parent-clusterrole
+  labels:
+    rbac.authorization.k8s.io/aggregate-to-child-clusterrole: "true"
+rules:
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get", "list"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  namespace: default
+  name: node-reader
+aggregationRule:
+  clusterRoleSelectors:
+  - matchLabels:
+      rbac.authroization.k8s.io/aggregate-to-child-clusterrole: "true"
+rules: []
