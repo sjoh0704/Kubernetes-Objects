@@ -1,2 +1,2 @@
 # Kubernetes-Objects
-This is kubernetes object repository
+kubernetes object repository
